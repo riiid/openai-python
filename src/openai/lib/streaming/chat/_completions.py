@@ -431,7 +431,8 @@ class ChatCompletionStreamState(Generic[ResponseFormatT]):
                         raise ContentFilterFinishReasonError()
 
             if (
-                choice_snapshot.message.content.strip()
+                choice_snapshot.message.content
+                and choice_snapshot.message.content.strip()
                 and not choice_snapshot.message.refusal
                 and is_given(self._rich_response_format)
             ):
