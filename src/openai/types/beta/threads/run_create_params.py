@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from ...chat_model import ChatModel
+from ...shared.chat_model import ChatModel
 from ..assistant_tool_param import AssistantToolParam
 from .runs.run_step_include import RunStepInclude
 from ...shared_params.metadata import Metadata
@@ -104,6 +104,15 @@ class RunCreateParamsBase(TypedDict, total=False):
     Whether to enable
     [parallel function calling](https://platform.openai.com/docs/guides/function-calling#configuring-parallel-function-calling)
     during tool use.
+    """
+
+    reasoning_effort: Optional[Literal["low", "medium", "high"]]
+    """**o1 and o3-mini models only**
+
+    Constrains effort on reasoning for
+    [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently
+    supported values are `low`, `medium`, and `high`. Reducing reasoning effort can
+    result in faster responses and fewer tokens used on reasoning in a response.
     """
 
     response_format: Optional[AssistantResponseFormatOptionParam]
