@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from ..chat_model import ChatModel
+from ..shared.chat_model import ChatModel
 from ..shared_params.metadata import Metadata
 from .chat_completion_modality import ChatCompletionModality
 from .chat_completion_tool_param import ChatCompletionToolParam
@@ -174,8 +174,8 @@ class CompletionCreateParamsBase(TypedDict, total=False):
     far, increasing the model's likelihood to talk about new topics.
     """
 
-    reasoning_effort: ChatCompletionReasoningEffort
-    """**o1 models only**
+    reasoning_effort: Optional[ChatCompletionReasoningEffort]
+    """**o1 and o3-mini models only**
 
     Constrains effort on reasoning for
     [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently
